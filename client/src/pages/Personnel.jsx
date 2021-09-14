@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Card from '../components/Card';
 
 export default function Personnel() {
   return (
@@ -36,6 +37,20 @@ export default function Personnel() {
           </div>
         </div>
         {/* end of sideB */}
+      </div>
+
+
+      <div>
+        <section className="text-gray-600 body-font">
+          <div className="container py-14 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              <Card/>
+              <Card/>
+              <Card/>
+              <Card/>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   )
