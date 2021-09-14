@@ -11,7 +11,7 @@ export default function App() {
       <div className="relative min-h-screen md:flex">
         <Sidebar />
         {/* Content */}
-        <div className="bg-gray-100 flex-1 p-10">
+        <div className="bg-gray-100 flex-1 p-5 md:p-10">
           <Switch>
             <Route exact path="/home">
               <Dashboard />
