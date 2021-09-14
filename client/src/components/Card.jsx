@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function Card() {
+export default function Card(props) {
+  let {avatar, firstName, lastName, phone, email, birthDate} = props
   return (
     <div className="p-4 md:w-1/4 mb-8 md:mb-0 w-full">
       {/* header */}
@@ -16,20 +17,20 @@ export default function Card() {
       {/* content */}
       <div className="h-full bg-white  overflow-hidden flex flex-row md:flex-col rounded-br-2xl rounded-bl-2xl md:rounded-none">
         <div className="px-4 md:px-8 py-5">
-          <img className="h-20 w-20 md:h-40 md:w-full" src="https://dummyimage.com/720x400" alt="blog" style={{ borderRadius: '50%' }} />
+          <img className="h-20 w-20 md:h-40 md:w-full" src={avatar} alt="blog" style={{ borderRadius: '50%' }} />
         </div>
         <div className="p-4">
           <section>
             <h2 className="text-xs title-font font-medium text-gray-800">Name</h2>
-            <p className="leading-relaxed text-sm md:text-base mb-2">First Name Last Name</p>
+            <p className="leading-relaxed text-sm md:text-base mb-2">{`${firstName} ${lastName}`}</p>
             <h2 className="text-xs title-font font-medium text-gray-800">Telephone</h2>
-            <p className="leading-relaxed text-sm md:text-base mb-2">Phone Number</p>
+            <p className="leading-relaxed text-sm md:text-base mb-2">{phone}</p>
           </section>
           <section className="hidden md:block">
             <h2 className="text-xs title-font font-medium text-gray-800">Birthday</h2>
-            <p className="leading-relaxed mb-2">DD-MM</p>
+            <p className="leading-relaxed mb-2">{birthDate.slice(5,10)}</p>
             <h2 className="text-xs title-font font-medium text-gray-800">Email</h2>
-            <p className="leading-relaxed mb-2">Email Address</p>
+            <p className="leading-relaxed truncate mb-2">{email}</p>
           </section>
         </div>
       </div>

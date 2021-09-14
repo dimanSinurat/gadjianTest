@@ -1,7 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from '../components/Card';
+import axios from 'axios';
+import Pagination from '../components/Pagination';
 
 export default function Personnel() {
+  let [users, setUsers] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  let [postsPerPage] = useState(4);
+  let [empty, setEmpty] = useState(false);
+ 
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: 'https://randomuser.me/api/?results=9'
+    })
+    .then(({data}) => {
+      setUsers(data.results)
+    })
+  }, [])
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentUsers =  users.slice(indexOfFirstPost, indexOfLastPost); 
+  const total = users.length
+  const nextPage = () => {
+    if (currentPage <= total){
+      setEmpty(false);
+      setCurrentPage(currentPage += 1)
+    }
+  }
+
+  const previousPage = () => {
+    if (currentPage === 2){
+      setEmpty(true);
+      setCurrentPage(currentPage -= 1);
+    }
+    if (currentPage > 1){
+      setCurrentPage(currentPage -= 1);
+    } 
+  }
+
   return (
     <>
       <div className="bg-white min-w-12/12 h-full md:h-24 rounded-sm flex justify-between p-4 shadow-md flex-col md:flex-row  space-y-4 md:space-y-0">
@@ -44,35 +82,29 @@ export default function Personnel() {
         <section className="text-gray-600 body-font">
           <div className="container py-14 mx-auto">
             <div className="flex flex-wrap -m-4">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {
+                users.length === 0 ? <p className="text-center">Loading</p> : 
+                currentUsers.map((el, idx) => (
+                  <Card
+                   avatar={el.picture.large}
+                   firstName={el.name.first}
+                   lastName={el.name.last}
+                   phone={el.phone}
+                   birthDate={el.dob.date}
+                   email={el.email}
+                   key={idx}
+                  />
+                ))
+              }
             </div>
           </div>
         </section>
       </div>
-
-      {/* pagination */}
-      <div className="flex justify-center space-x-10 my-10">
-        <button  className="text-gray-500">
-          <div className="flex">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span>Previous Page</span>
-          </div>
-        </button>
-        <button>
-          <div className="flex">
-            <span className="font-semibold">Next Page</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-            </svg>
-          </div>
-        </button>
-      </div>
-
+      <Pagination
+       next={nextPage}
+       previous={previousPage}
+       empty={empty}
+      />
     </>
   )
 }
