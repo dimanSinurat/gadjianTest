@@ -39,19 +39,40 @@ export default function Personnel() {
         {/* end of sideB */}
       </div>
 
-
+      {/* card */}
       <div>
         <section className="text-gray-600 body-font">
           <div className="container py-14 mx-auto">
             <div className="flex flex-wrap -m-4">
-              <Card/>
-              <Card/>
-              <Card/>
-              <Card/>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
             </div>
           </div>
         </section>
       </div>
+
+      {/* pagination */}
+      <div className="flex justify-center space-x-10 my-10">
+        <button  className="text-gray-500">
+          <div className="flex">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span>Previous Page</span>
+          </div>
+        </button>
+        <button>
+          <div className="flex">
+            <span className="font-semibold">Next Page</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+          </div>
+        </button>
+      </div>
+
     </>
   )
 }
