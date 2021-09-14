@@ -8,8 +8,10 @@ export default function Personnel() {
   let [users, setUsers] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
   let [postsPerPage] = useState(4);
+  let [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     axios({
       method: 'GET',
       url: 'https://randomuser.me/api/?results=28'
@@ -17,6 +19,10 @@ export default function Personnel() {
       .then(({ data }) => {
         setUsers(data.results)
       })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => setLoading(false));
   }, [])
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -50,7 +56,7 @@ export default function Personnel() {
         <div className="container py-14 mx-auto">
           <div className="flex flex-wrap -m-4">
             {
-              users.length === 0 ? <p className="text-center">Loading</p> :
+              loading ? <p className="text-center">Loading</p> :
                 currentUsers.map((el, idx) => (
                   <Card
                     avatar={el.picture.large}

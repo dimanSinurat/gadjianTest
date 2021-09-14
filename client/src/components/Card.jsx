@@ -30,7 +30,7 @@ export default function Card(props) {
             <h2 className="text-xs title-font font-medium text-gray-800">Birthday</h2>
             <p className="leading-relaxed mb-2">{birthDate.slice(5,10)}</p>
             <h2 className="text-xs title-font font-medium text-gray-800">Email</h2>
-            <p className="leading-relaxed truncate mb-2">{email}</p>
+              <p className="leading-relaxed truncate  mb-2">{email}</p>
           </section>
         </div>
       </div>
