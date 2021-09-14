@@ -2,15 +2,15 @@ import React from 'react'
 
 export default function Personnel() {
   return (
-    <div>
+    <>
       <div className="bg-white min-w-12/12 h-full md:h-24 rounded-sm flex justify-between p-4 shadow-md flex-col md:flex-row  space-y-4 md:space-y-0">
         {/* sideA */}
         <div>
           <h1 className="text-2xl font-bold text-primary">PERSONNEL LIST</h1>
           <p className="text-gray-500">List of all personnels</p>
         </div>
-
-        {/* sideB */}
+        {/* end of sideA */}
+        {/* side B */}
         <div className="flex md:space-x-2 md:items-center text-sm flex-col md:flex-row  space-y-2 md:space-y-0">
           {/* search input */}
           <div>
@@ -35,7 +35,8 @@ export default function Personnel() {
             </button>
           </div>
         </div>
+        {/* end of sideB */}
       </div>
-    </div>
+    </>
   )
 }
